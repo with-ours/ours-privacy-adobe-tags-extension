@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Identify User - Ours Privacy</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+  </head>
+  <body>
+    <div class="field">
+      <label class="label">User Properties</label>
+      <div class="hint">
+        Add key-value pairs to identify the user (e.g., email, name, plan).
+        Values support data elements: %myDataElement%
+      </div>
+      <div id="userPropertiesTable"></div>
+      <div class="error" id="props-error">
+        At least one user property is required.
+      </div>
+    </div>
+
+    <script src="//assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script src="../shared/key-value-table.js"></script>
+    <script>
+      var propsTable = createKeyValueTable('userPropertiesTable');
+
+      window.extensionBridge.register({
+        init: function (info) {
+          if (info.settings && info.settings.userProperties) {
+            propsTable.setRows(info.settings.userProperties);
+          }
+        },
+
+        validate: function () {
+          var rows = propsTable.getRows();
+          var errorEl = document.getElementById('props-error');
+          var hasValidRow = rows.some(function (r) {
+            return r.key && r.key.trim();
+          });
+          if (!hasValidRow) {
+            errorEl.style.display = 'block';
+            return false;
+          }
+          errorEl.style.display = 'none';
+          return true;
+        },
+
+        getSettings: function () {
+          return {
+            userProperties: propsTable.getRows(),
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

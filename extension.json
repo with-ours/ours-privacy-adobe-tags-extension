@@ -1,0 +1,107 @@
+{
+  "platform": "web",
+  "displayName": "Ours Privacy",
+  "name": "ours-privacy",
+  "version": "1.0.0",
+  "description": "Integrate the Ours Privacy SDK with Adobe Experience Platform Tags to track events and identify users.",
+  "author": {
+    "name": "Ours Privacy",
+    "url": "https://oursprivacy.com",
+    "email": "support@oursprivacy.com"
+  },
+  "viewBasePath": "src/view/",
+  "configuration": {
+    "viewPath": "configuration/configuration.html",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": ["token"],
+      "additionalProperties": false
+    }
+  },
+  "actions": [
+    {
+      "name": "initialize",
+      "displayName": "Initialize",
+      "categoryName": "Ours Privacy",
+      "libPath": "src/lib/actions/initialize.js",
+      "viewPath": "actions/initialize.html",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "track",
+      "displayName": "Track Event",
+      "categoryName": "Ours Privacy",
+      "libPath": "src/lib/actions/track.js",
+      "viewPath": "actions/track.html",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "eventName": {
+            "type": "string",
+            "minLength": 1
+          },
+          "eventProperties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": { "type": "string" },
+                "value": { "type": "string" }
+              }
+            }
+          },
+          "userProperties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": { "type": "string" },
+                "value": { "type": "string" }
+              }
+            }
+          }
+        },
+        "required": ["eventName"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "identify",
+      "displayName": "Identify User",
+      "categoryName": "Ours Privacy",
+      "libPath": "src/lib/actions/identify.js",
+      "viewPath": "actions/identify.html",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "userProperties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": { "type": "string" },
+                "value": { "type": "string" }
+              }
+            }
+          }
+        },
+        "required": ["userProperties"],
+        "additionalProperties": false
+      }
+    }
+  ]
+}

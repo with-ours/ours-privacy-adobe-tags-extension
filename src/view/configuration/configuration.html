@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ours Privacy Configuration</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+  </head>
+  <body>
+    <div class="field">
+      <label class="label" for="token">Project Token</label>
+      <input
+        type="text"
+        id="token"
+        placeholder="Enter your Ours Privacy project token"
+      />
+      <div class="hint">
+        Find your project token in the
+        <a href="https://app.oursprivacy.com" target="_blank"
+          >Ours Privacy dashboard</a
+        >
+        under Settings.
+      </div>
+      <div class="error" id="token-error">Project token is required.</div>
+    </div>
+
+    <script src="//assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      window.extensionBridge.register({
+        init: function (info) {
+          if (info.settings && info.settings.token) {
+            document.getElementById('token').value = info.settings.token;
+          }
+        },
+
+        validate: function () {
+          var token = document.getElementById('token').value.trim();
+          var errorEl = document.getElementById('token-error');
+          if (!token) {
+            errorEl.style.display = 'block';
+            return false;
+          }
+          errorEl.style.display = 'none';
+          return true;
+        },
+
+        getSettings: function () {
+          return {
+            token: document.getElementById('token').value.trim(),
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Initialize Ours Privacy</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+  </head>
+  <body>
+    <div class="info-box">
+      <p>
+        This action loads the Ours Privacy SDK and initializes it with the
+        project token configured in the extension settings.
+      </p>
+      <p class="hint">
+        Add this action to a rule that fires on every page (e.g., Library Loaded
+        or Page Bottom). Make sure it fires before any Track or Identify actions.
+      </p>
+    </div>
+
+    <script src="//assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      window.extensionBridge.register({
+        init: function () {},
+        validate: function () {
+          return true;
+        },
+        getSettings: function () {
+          return {};
+        },
+      });
+    </script>
+  </body>
+</html>

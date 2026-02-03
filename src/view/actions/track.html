@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Track Event - Ours Privacy</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+  </head>
+  <body>
+    <div class="field">
+      <label class="label" for="eventName">Event Name</label>
+      <input
+        type="text"
+        id="eventName"
+        placeholder="e.g., page_view, button_click"
+      />
+      <div class="hint">
+        The name of the event to track. Supports data elements:
+        %myDataElement%
+      </div>
+      <div class="error" id="eventName-error">Event name is required.</div>
+    </div>
+
+    <h3>Event Properties</h3>
+    <div class="hint">
+      Optional key-value pairs of event metadata. Values support data elements.
+    </div>
+    <div id="eventPropertiesTable"></div>
+
+    <h3>User Properties</h3>
+    <div class="hint">
+      Optional key-value pairs of user attributes to send with this event.
+    </div>
+    <div id="userPropertiesTable"></div>
+
+    <script src="//assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script src="../shared/key-value-table.js"></script>
+    <script>
+      var eventPropsTable = createKeyValueTable('eventPropertiesTable');
+      var userPropsTable = createKeyValueTable('userPropertiesTable');
+
+      window.extensionBridge.register({
+        init: function (info) {
+          if (info.settings) {
+            document.getElementById('eventName').value =
+              info.settings.eventName || '';
+            if (info.settings.eventProperties) {
+              eventPropsTable.setRows(info.settings.eventProperties);
+            }
+            if (info.settings.userProperties) {
+              userPropsTable.setRows(info.settings.userProperties);
+            }
+          }
+        },
+
+        validate: function () {
+          var name = document.getElementById('eventName').value.trim();
+          var errorEl = document.getElementById('eventName-error');
+          if (!name) {
+            errorEl.style.display = 'block';
+            return false;
+          }
+          errorEl.style.display = 'none';
+          return true;
+        },
+
+        getSettings: function () {
+          return {
+            eventName: document.getElementById('eventName').value.trim(),
+            eventProperties: eventPropsTable.getRows(),
+            userProperties: userPropsTable.getRows(),
+          };
+        },
+      });
+    </script>
+  </body>
+</html>
