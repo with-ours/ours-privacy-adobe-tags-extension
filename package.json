@@ -10,12 +10,13 @@
     "test:ci": "vitest run --coverage --bail 1"
   },
   "overrides": {
-    "minimatch": ">=3.1.3"
+    "minimatch": ">=3.1.3",
+    "lodash": ">=4.18.0"
   },
   "devDependencies": {
     "@adobe/reactor-sandbox": "^13.4.0",
     "@adobe/reactor-validator": "^2.5.0",
-    "@vitest/coverage-v8": "^2.1.0",
-    "vitest": "^2.1.0"
+    "@vitest/coverage-v8": "^3.2.4",
+    "vitest": "^3.2.4"
   }
 }
