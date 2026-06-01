@@ -19,6 +19,6 @@
     "@adobe/reactor-sandbox": "^13.4.0",
     "@adobe/reactor-validator": "^2.5.0",
     "@vitest/coverage-v8": "^3.2.4",
-    "vitest": "^3.2.4"
+    "vitest": "^4.1.0"
   }
 }
