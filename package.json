@@ -16,9 +16,13 @@
     "minimatch@^3": "^3.1.5"
   },
   "devDependencies": {
+    "@adobe/reactor-packager": "^4.4.0",
     "@adobe/reactor-sandbox": "^13.4.0",
     "@adobe/reactor-validator": "^2.5.0",
     "@vitest/coverage-v8": "^4.1.11",
     "vitest": "^4.1.8"
+  },
+  "engines": {
+    "node": ">=24.0.0"
   }
 }

@@ -53,7 +53,7 @@ Make sure the **Initialize** action fires before any **Track** or **Identify** a
 
 ### Prerequisites
 
-- Node.js with npm 5.2.0+
+- Node.js 24 or newer with npm
 
 ### Local Development
 
